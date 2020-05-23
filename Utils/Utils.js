@@ -1,9 +1,15 @@
+const JWT = require('jsonwebtoken');
 const JWT_CONFIG = require('../Config/Config');
 
 class Utils {
 
+  // Funcion para crear TOKEN JWT
+  crearToken(user){
+    return JWT.sign(user, JWT_CONFIG.JWT_KEY, {expiresIn: 1200});
+  }
+
   // Funcion para verificar JWT
-  verificacionJWT = async (JWT, token) => {
+  verificacionJWT = async (token) => {
 
     try {
       return new Promise((resolver, reject) => {
